@@ -1,27 +1,26 @@
 # DrawGraphs
 
-**DrawGraphs** is a Python program designed to generate and visualize weighted graphs. By providing the number of nodes, edges, and the connections between nodes with their respective weights, the program creates a visual representation of the graph and saves it as an image.
-
----
-
+**DrawGraphs** is an interactive tool for creating, visualizing, and manipulating graphs. In this new version, graph nodes are interactive and can be moved manually by clicking and dragging them. 
 ## Features
 
-- **Customizable Graph Input:** Define the number of nodes, edges, and specific connections.
-- **Weighted Edges:** Include weights for edges to create realistic graph models.
-- **Visual Output:** Generates a clear graphical representation of the input graph.
-- **Image Export:** Saves the graph as an image file for easy sharing or analysis.
+- **Customizable Graph Input:** Define the number of nodes, edges, and their weights.
+- **Interactive Nodes:** Drag and rearrange nodes manually with your mouse.
+- **Weighted Edges:** Add weights to edges for enhanced graph customization.
+- **Real-Time Updates:** Node movements are reflected immediately on the graph.
+- **Graphical Output:** Displays the graph in an interactive window instead of just saving an image.
 
 ---
 
 ## Requirements
 
-Ensure you have the following installed in your environment:
+Make sure you have the following installed:
 
-- Python 3.6+
-- Required Python libraries:
+- **Python 3.6+**
+- Required libraries:
   - `networkx`
   - `matplotlib`
-
+  - `tkinter` (usually pre-installed with Python on most operating systems)
+  
 You can install the required libraries with the following command:
 
 ```bash
@@ -73,10 +72,11 @@ Enter the connections (n1, n2, weight) for each edge:
 ```
 
 ### 4. Output
-After processing the input, the program will:
+Once the data is entered, an interactive window will open where you can:
 
-1. Generate a graphical representation of the graph.
-2. Save the graph as an image file (e.g., graph.png) in the same directory.
+1. View the generated graph.
+2. Drag and rearrange the nodes with your mouse.
+3. Changes are instantly reflected on the graph.
 
 #### Example Output:
 ![img.png](img.png)
