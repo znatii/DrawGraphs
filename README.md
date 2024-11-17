@@ -52,7 +52,7 @@ When you run the program, you will be prompted to input the following:
    Example: `4`  
 
 2. **Number of Edges (M):** Enter the total number of edges in the graph.  
-   Example: `3`  
+   Example: `5`  
 
 3. **Connections and Weights:** For each edge, provide the following details:
    - `n1`: The starting node of the edge.
@@ -99,8 +99,7 @@ git push origin feature/my-feature
 5. Open a Pull Request
 
 ### License 
-This project is licensed under the MIT License. See the LICENSE file for more information.
-
+This project is licensed under a Non-Commercial License. You may use, modify, and share the code for non-commercial purposes only. Commercial use requires prior written permission. See the [LICENSE](LICENSE) file for details.
 
 ### Contact 
 If you have questions, feedback, or suggestions, feel free to reach out:
