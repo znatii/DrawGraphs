@@ -53,7 +53,7 @@ When you run the program, you will be prompted to input the following:
    Example: `4`  
 
 2. **Number of Edges (M):** Enter the total number of edges in the graph.  
-   Example: `3`  
+   Example: `5`  
 
 3. **Connections and Weights:** For each edge, provide the following details:
    - `n1`: The starting node of the edge.
