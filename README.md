@@ -1,6 +1,7 @@
 # DrawGraphs
 
-**DrawGraphs** is an interactive tool for creating, visualizing, and manipulating graphs. In this new version, graph nodes are interactive and can be moved manually by clicking and dragging them. 
+**DrawGraphs** is an interactive tool for creating, visualizing, and manipulating graphs. This new version introduces support for both **directed** and **weighted** graphs, allowing for greater flexibility and customization. Nodes are interactive, meaning you can drag and rearrange them manually.
+
 ## Features
 
 - **Customizable Graph Input:** Define the number of nodes, edges, and their weights.
@@ -48,7 +49,8 @@ python3 drawGraphs.py
 
 When you run the program, you will be prompted to input the following:
 
-1. **Number of Nodes (N):** Enter the total number of nodes in the graph.  
+1. **Directed or Weighted (yes/no):** Choose the options you need.
+2. **Number of Nodes (N):** Enter the total number of nodes in the graph.  
    Example: `4`  
 
 2. **Number of Edges (M):** Enter the total number of edges in the graph.  
@@ -61,6 +63,8 @@ When you run the program, you will be prompted to input the following:
 
 #### Example Input:
 ```text
+Is the graph weighted? (yes/no): yes
+Is the graph directed? (yes/no): yes
 Enter the number of nodes (N): 4
 Enter the number of edges (M): 5
 Enter the connections (n1, n2, weight) for each edge:
@@ -79,7 +83,7 @@ Once the data is entered, an interactive window will open where you can:
 3. Changes are instantly reflected on the graph.
 
 #### Example Output:
-![img.png](img.png)
+![img_1.png](img_1.png)
 
 ### 5. Contriubution
 Contributions are welcome! Follow these steps to contribuite:

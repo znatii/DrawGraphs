@@ -5,18 +5,23 @@ import tkinter as tk
 
 
 class InteractiveGraph:
-    def __init__(self, root, N, M, edges):
+    def __init__(self, root, N, M, edges, directed, weighted):
         self.root = root
         self.root.title("DrawGraph")
 
-        # The graph is created
-        self.G = nx.Graph()
+        # Create the graph: directed or undirected
+        self.G = nx.DiGraph() if directed else nx.Graph()
 
         # Add nodes and edges to the graph
         for i in range(N):
             self.G.add_node(i)
-        for (n1, n2, weight) in edges:
-            self.G.add_edge(n1, n2, weight=weight)
+
+        if weighted:
+            for (n1, n2, weight) in edges:
+                self.G.add_edge(n1, n2, weight=weight)
+        else:
+            for (n1, n2) in edges:
+                self.G.add_edge(n1, n2)
 
         # Initial position of the nodes
         self.pos = nx.spring_layout(self.G, k=0.5)
@@ -30,6 +35,8 @@ class InteractiveGraph:
         self.canvas.get_tk_widget().pack(fill=tk.BOTH, expand=True)
 
         # Draw the graph
+        self.directed = directed
+        self.weighted = weighted
         self.draw_graph()
 
         # Connect events
@@ -41,13 +48,24 @@ class InteractiveGraph:
         # Clear the current graph
         self.ax.clear()
 
-        # Drawing nodes and edges
-        nx.draw(self.G, self.pos, ax=self.ax, with_labels=True, node_color='skyblue',
-                node_size=2000, font_size=12, font_weight='bold')
+        # Draw nodes and edges
+        nx.draw(
+            self.G,
+            self.pos,
+            ax=self.ax,
+            with_labels=True,
+            node_color='skyblue',
+            node_size=2000,
+            font_size=12,
+            font_weight='bold',
+            arrows=self.directed,  # Show arrows if the graph is directed
+            connectionstyle="arc3"
+        )
 
-        # Draw edge weight labels
-        labels = nx.get_edge_attributes(self.G, 'weight')
-        nx.draw_networkx_edge_labels(self.G, self.pos, edge_labels=labels, font_color='red', font_size=10)
+        # Draw edge weight labels if the graph is weighted
+        if self.weighted:
+            labels = nx.get_edge_attributes(self.G, "weight")
+            nx.draw_networkx_edge_labels(self.G, self.pos, edge_labels=labels, font_color="red", font_size=10)
 
         # Update figure in Tkinter
         self.canvas.draw()
@@ -73,22 +91,33 @@ class InteractiveGraph:
             self.draw_graph()  # Redraw the graph at the new position
 
 
-
 # Main function to run the interactive graph in Tkinter
 def main():
-    # Read input data
+    # Ask if the graph is weighted
+    weighted = input("Is the graph weighted? (yes/no): ").strip().lower() == "yes"
+
+    # Ask if the graph is directed
+    directed = input("Is the graph directed? (yes/no): ").strip().lower() == "yes"
+
+    # Read the number of nodes and edges
     N = int(input("Enter the number of nodes (N): "))
-    M = int(input("Enter the number of edges (N): "))
+    M = int(input("Enter the number of edges (M): "))
 
     edges = []
-    print("Enter the connections (n1, n2, weight) for each edge:")
-    for _ in range(M):
-        n1, n2, weight = map(int, input().split())
-        edges.append((n1, n2, weight))
+    if weighted:
+        print("Enter the connections (n1, n2, weight) for each edge:")
+        for _ in range(M):
+            n1, n2, weight = map(int, input().split())
+            edges.append((n1, n2, weight))
+    else:
+        print("Enter the connections (n1, n2) for each edge:")
+        for _ in range(M):
+            n1, n2 = map(int, input().split())
+            edges.append((n1, n2))
 
     # Create the Tkinter window and run the interactive graph
     root = tk.Tk()
-    app = InteractiveGraph(root, N, M, edges)
+    app = InteractiveGraph(root, N, M, edges, directed, weighted)
     root.mainloop()
 
 
