@@ -105,7 +105,7 @@ Once the data is entered, an interactive window will open where you can:
 
 #### Example Output:
 
-[Screencast-from-20-11-24-00_39_37.mp4](media/vid_1.mp4)
+![gif_1.gif](media/gif_1.gif)
 
 ### 5. Contriubution
 Contributions are welcome! Follow these steps to contribuite:
