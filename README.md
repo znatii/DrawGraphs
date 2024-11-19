@@ -1,14 +1,32 @@
+
+<div align="center">
+
 # DrawGraphs
 
-**DrawGraphs** is an interactive tool for creating, visualizing, and manipulating graphs. This new version introduces support for both **directed** and **weighted** graphs, allowing for greater flexibility and customization. Nodes are interactive, meaning you can drag and rearrange them manually.
+<div align="justify">
+
+**DrawGraphs** is an interactive tool for creating, visualizing, and manipulating graphs. This version introduces advanced functionalities such as Breadth-First Search (BFS), Depth-First Search (DFS), Minimum Spanning Tree (MST), and Shortest Path calculations. Users can now explore the graph interactively and perform operations directly from the interface.
+
+</div>
+
+![5.png](media/DrawGraphs/5.png)
+
+</div>
 
 ## Features
 
 - **Customizable Graph Input:** Define the number of nodes, edges, and their weights.
 - **Interactive Nodes:** Drag and rearrange nodes manually with your mouse.
-- **Weighted Edges:** Add weights to edges for enhanced graph customization.
-- **Real-Time Updates:** Node movements are reflected immediately on the graph.
+- **Weighted or Unweighted Graphs:** Choose whether edges have weights or not.
+- **Directed or Undirected Graphs:** Select if the graph is directed (with arrows) or undirected.
 - **Graphical Output:** Displays the graph in an interactive window instead of just saving an image.
+
+## New Functionalities:
+After creating the graph, you can now perform the following operations:
+1. **BFS (Breadth-First Search):** Calculates the BFS traversal of the graph starting from a node.
+2. **DFS (Depth-First Search):** Calculates the DFS traversal of the graph starting from a node.
+3. **MST (Minimum Spanning Tree):** Computes the MST of a weighted graph using efficient algorithms like Kruskal or Prim.
+4. **Shortest Paths:** Calculates the shortest paths from each node to every other node using Dijkstra's algorithm.
 
 ---
 
@@ -78,12 +96,16 @@ Enter the connections (n1, n2, weight) for each edge:
 ### 4. Output
 Once the data is entered, an interactive window will open where you can:
 
-1. View the generated graph.
-2. Drag and rearrange the nodes with your mouse.
-3. Changes are instantly reflected on the graph.
+1. **Drag** and rearrange nodes to adjust the layout.
+2. Use **buttons** at the top to perform graph operations.
+   - DFS
+   - BFS
+   - MST
+   - Shortest Paths
 
 #### Example Output:
-![img_1.png](img_1.png)
+
+[Screencast-from-20-11-24-00_39_37.mp4](media/vid_1.mp4)
 
 ### 5. Contriubution
 Contributions are welcome! Follow these steps to contribuite:
