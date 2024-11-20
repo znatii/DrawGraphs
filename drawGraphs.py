@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 import tkinter as tk
 from tkinter import scrolledtext
+from PIL import Image, ImageTk  # Import PIL for handling the logo image
 from Modules.search_algorithms import dfs, bfs
 from Modules.minimum_spanning_tree import kruskal, prim
 from Modules.shortest_path import dijkstra
@@ -106,6 +107,15 @@ class InteractiveGraph:
         button_frame = tk.Frame(self.root)
         button_frame.pack(fill=tk.X, padx=10, pady=5)
 
+        # Add the application logo to the button frame
+        logo_image = Image.open("media/DrawGraphs/4.png")
+        logo_image = logo_image.resize((45, 45),Image.Resampling.LANCZOS)  # Resize the logo
+        logo_photo = ImageTk.PhotoImage(logo_image)
+
+        logo_label = tk.Label(button_frame, image=logo_photo)
+        logo_label.image = logo_photo  # Keep a reference to prevent garbage collection
+        logo_label.pack(side=tk.RIGHT, padx=10)
+
         # Create buttons
         tk.Button(button_frame, text="DFS (Depth First Search)", command=self.run_dfs).pack(side=tk.LEFT, padx=5)
         tk.Button(button_frame, text="BFS (Breadth First Search)", command=self.run_bfs).pack(side=tk.LEFT, padx=5)
@@ -113,50 +123,29 @@ class InteractiveGraph:
         tk.Button(button_frame, text="Shortest Paths", command=self.run_shortest_paths).pack(side=tk.LEFT, padx=5)
 
     def run_dfs(self):
-        #start_node = 0  # If you want to select the initial node
-        #result = list(nx.dfs_edges(self.G, source=start_node)) # Use the NX libraries
         result = dfs(self.G)
         self.output_result("DFS from graph: {}".format(result))
 
     def run_bfs(self):
-        #start_node = 0  # If you want to select the initial node
-        #result = list(nx.bfs_edges(self.G, source=start_node)) # Use the NX libraries
         result = bfs(self.G)
         self.output_result("BFS from graph: {}".format(result))
 
     def run_mst(self):
-        # Example: Replace with your actual function call
         if self.weighted:
-            # With NX libraries
-            #mst = nx.minimum_spanning_tree(self.G)
-            #result = list(mst.edges(data=True))
-            # With Kruskal
             result, mst_edges = kruskal(self.G.number_of_nodes(), self.G.adj)
             self.output_result("Minimum Spanning Tree Edges: {}. Value of MST: {}.".format(mst_edges, result))
-            # With Prim
-            #result, mst_nodes = prim(self.G.adj)
-            #self.output_result("Minimum Spanning Tree Nodes: {} Value of MST: {}.".format(mst_nodes, result))
         else:
             self.output_result("MST calculation requires a weighted graph.")
 
     def run_shortest_paths(self):
         if self.weighted:
             lengths = ''
-            for i in range (0, len(self.G)):
-                start_node = i  # Example starting node
-                try:
-                    # With nx libraries
-                    #lengths = nx.single_source_dijkstra_path_length(self.G, source=start_node)
-                    #output.append("node {}: {}".format(start_node, lengths))
-                    #self.output_result("Shortest paths from node {}: {}".format(start_node, lengths))
-                    lengths += dijkstra(self.G.adj, start_node)
-                except nx.NetworkXNoPath:
-                    self.output_result("No paths found from node {}.".format(start_node))
-
+            for i in range(len(self.G)):
+                start_node = i
+                lengths += dijkstra(self.G.adj, start_node)
             self.output_result("Shortest paths from:\n{}".format(lengths))
         else:
             self.output_result("Shortest paths requires a weighted graph.")
-
 
     def output_result(self, message):
         # Clear the output text box and insert the new message
@@ -188,8 +177,10 @@ def main():
             n1, n2 = map(int, input().split())
             edges.append((n1, n2))
 
-    # Create the Tkinter window and run the interactive graph
+    # Create the Tkinter window
     root = tk.Tk()
+
+    # Run the interactive graph
     app = InteractiveGraph(root, N, M, edges, directed, weighted)
     root.mainloop()
 
